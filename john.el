@@ -101,6 +101,11 @@
   (remove-hook 'after-change-functions 'moz-update t))
 
 ;; JDE Stuff
+;;(setenv "JAVA_HOME"
+;;        "/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Sun-Repro")
+;; Now overriden using customize..
+;; (setq jde-jdk
+;;"/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Sun-Repro")
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/vendor/jde-2.3.5.1/lisp"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/vendor/cedet-1.0pre4/common/"))
 (load-file (expand-file-name "~/.emacs.d/vendor/cedet-1.0pre4/common/cedet.el"))
