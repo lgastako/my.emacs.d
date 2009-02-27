@@ -110,3 +110,5 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/vendor/cedet-1.0pre4/common/"))
 (load-file (expand-file-name "~/.emacs.d/vendor/cedet-1.0pre4/common/cedet.el"))
 (require 'jde)
+
+(setq load-path (cons "~/.emacs.d/vendor/tuareg-mode-1.45.6/" load-path))
