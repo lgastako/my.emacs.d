@@ -1,5 +1,5 @@
-;; Start lisp mode automatically when opening a .clj file
-(add-to-list 'auto-mode-alist (cons "\\.clj$" 'lisp-mode))
+;; Start clojure mode automatically when opening a .clj file
+(add-to-list 'auto-mode-alist (cons "\\.clj$" 'clojure-mode))
 
 ;; Load slime
 (add-to-list 'load-path "/Users/john/src/slime/")
@@ -12,7 +12,12 @@
 
 ;; Set up the Java classpath for clojure
 (setq swank-clojure-extra-classpaths 
-      (list "/Users/john/src/erayjure/commons-math-1.2/commons-math-1.2.jar"
+      (list "/Users/john/.clojure"
+            "/Users/john/src/clojure-contrib/clojure-contrib.jar"
+            "/Users/john/src/erayjure/commons-math-1.2/commons-math-1.2.jar"
+            "/Users/john/src/forex/dejcartes-snapshot/libs/jcommon-1.0.14.jar"
+            "/Users/john/src/forex/dejcartes-snapshot/libs/jfreechart-1.0.11.jar"
+            "/Users/john/src/forex/dejcartes-snapshot/dejcartes.jar"
 	    "."))
 
 (require 'swank-clojure-autoload)
@@ -38,7 +43,9 @@
 
 (setq erc-auto-query 'buffer)
 
-(setq show-trailing-whitespace t)
+;; (setq show-trailing-whitespace t)
+;; may need to be this instead:
+(setq-default show-trailing-whitespace t)
 
 ;; Start the emacsclient server
 (server-start)
@@ -69,7 +76,6 @@
 (global-set-key [?\A-l] 'goto-line)
 (global-set-key [?\A-m] 'iconify-frame)
 (global-set-key [?\A-n] 'new-frame)
-
 
 ;; Mozrepl stuffs
 
@@ -111,4 +117,30 @@
 (load-file (expand-file-name "~/.emacs.d/vendor/cedet-1.0pre4/common/cedet.el"))
 (require 'jde)
 
+
+;; Ocaml stuff
 (setq load-path (cons "~/.emacs.d/vendor/tuareg-mode-1.45.6/" load-path))
+
+(setq auto-mode-alist (cons '("\\.ml\\w?" . tuareg-mode) auto-mode-alist))
+(autoload 'tuareg-mode "tuareg" "Major mode for editing Caml code" t)
+(autoload 'camldebug "camldebug" "Run the Caml debugger" t)
+
+
+;; Prolog stuff
+(autoload 'run-prolog "prolog" "Start a Prolog sub-process." t)
+(autoload 'prolog-mode "prolog" "Major mode for editing Prolog programs." t)
+(autoload 'mercury-mode "prolog" "Major mode for editing Mercury programs." t)
+(setq prolog-system 'swi)
+(setq auto-mode-alist (append '(("\\.pl$" . prolog-mode)
+                                ("\\.m$" . mercury-mode))
+                              auto-mode-alist))
+
+;; Erlang stuff
+(setq load-path (cons  "/opt/local/lib/erlang/lib/tools-2.6/emacs"
+                       load-path))
+(setq erlang-root-dir "/opt/local/lib/erlang")
+(setq exec-path (cons "/opt/local/lib/erlang/bin" exec-path))
+(require 'erlang-start)
+
+;; No tabs damnit.
+(setq indent-tabs-mode nil)
