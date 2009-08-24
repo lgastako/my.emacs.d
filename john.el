@@ -40,6 +40,12 @@
 (yas/initialize)
 (yas/load-directory "~/.emacs.d/snippets")
 
+;; emacs-textmate
+;; (adds better ", ], \) etc pairing).
+(load-file "~/.emacs.d/vendor/emacs-textmate/textmate.el")
+(textmate-mode) ;; TODO: Should I add hooks? Nah, I want it on almost always...
+
+
 ;; Haskell junk
 (add-hook 'haskell-mode-hook 'my-haskell-mode-hook)
 
