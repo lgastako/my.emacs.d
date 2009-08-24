@@ -34,6 +34,12 @@
 ;;(color-theme-zenburn)
 (color-theme-railscasts)
 
+;; yasnippets
+(add-to-list 'load-path "~/.emacs.d/vendor/yasnippet")
+(require 'yasnippet)
+(yas/initialize)
+(yas/load-directory "~/.emacs.d/snippets")
+
 ;; Haskell junk
 (add-hook 'haskell-mode-hook 'my-haskell-mode-hook)
 
@@ -86,6 +92,8 @@
 (add-hook 'javascript-mode-hook 'java-custom-setup)
 (defun javascript-custom-setup ()
   (moz-minor-mode 1))
+
+
 
 ;;(require 'moz)
 ;;(require 'json)
