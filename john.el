@@ -1,23 +1,36 @@
+(clojure-slime-config "/home/john/emacs-clojure")
+
+
 ;; Start clojure mode automatically when opening a .clj file
 (add-to-list 'auto-mode-alist (cons "\\.clj$" 'clojure-mode))
 
 ;; Load slime
-(add-to-list 'load-path "/Users/john/src/slime/")
+;;(add-to-list 'load-path "~john/src/slime/")
 (require 'slime)
 (slime-setup)
 
 ;; Load the clojure backend for slime
-(add-to-list 'load-path "/Users/john/src/swank-clojure")
-(setq swank-clojure-jar-path "/Users/john/src/clojure/clojure.jar")
+(add-to-list 'load-path "~john/src/swank-clojure")
+(setq swank-clojure-jar-path "~john/src/clojure/clojure.jar")
+
+;; YAML mode
+(add-to-list 'load-path "/usr/local/share/emacs/site-lisp")
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+(add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))
+(add-hook 'yaml-mode-hook
+          '(lambda ()
+             (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
+
 
 ;; Set up the Java classpath for clojure
-(setq swank-clojure-extra-classpaths 
-      (list "/Users/john/.clojure"
-            "/Users/john/src/clojure-contrib/clojure-contrib.jar"
-            "/Users/john/src/erayjure/commons-math-1.2/commons-math-1.2.jar"
-            "/Users/john/src/forex/dejcartes-snapshot/libs/jcommon-1.0.14.jar"
-            "/Users/john/src/forex/dejcartes-snapshot/libs/jfreechart-1.0.11.jar"
-            "/Users/john/src/forex/dejcartes-snapshot/dejcartes.jar"
+(setq swank-clojure-extra-classpaths
+      (list "~/.clojure"
+            "~/src/clojure-contrib/clojure-contrib.jar"
+            "~/src/erayjure/commons-math-1.2/commons-math-1.2.jar"
+            "~/src/forex/dejcartes-snapshot/libs/jcommon-1.0.14.jar"
+            "~/src/forex/dejcartes-snapshot/libs/jfreechart-1.0.11.jar"
+            "~/src/forex/dejcartes-snapshot/dejcartes.jar"
 	    "."))
 
 (require 'swank-clojure-autoload)
@@ -53,7 +66,8 @@
   (global-set-key [(control c) (e)] 'inferior-haskell-reload-file))
 
 ;; Pretty / larger font
-(set-face-font 'default "-apple-monaco-medium-r-normal--20-0-72-72-m-0-iso10646-1")
+;(set-face-font 'default "-apple-monaco-medium-r-normal--20-0-72-72-m-0-iso10646-1")
+;(set-face-font 'default "Monaco_Linux")
 
 (setq erc-auto-query 'buffer)
 
@@ -104,19 +118,19 @@
 ;;(require 'moz)
 ;;(require 'json)
 (load "~/.emacs.d/vendor/mozrepl/json.el")
- 
+
 (defun moz-update (&rest ignored)
   "Update the remote mozrepl instance"
   (interactive)
   (comint-send-string (inferior-moz-process)
     (concat "content.document.body.innerHTML="
              (json-encode (buffer-string)) ";")))
- 
+
 (defun moz-enable-auto-update ()
   "Automatically the remote mozrepl when this buffer changes"
   (interactive)
   (add-hook 'after-change-functions 'moz-update t t))
- 
+
 (defun moz-disable-auto-update ()
   "Disable automatic mozrepl updates"
   (interactive)
@@ -128,10 +142,11 @@
 ;; Now overriden using customize..
 ;; (setq jde-jdk
 ;;"/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Sun-Repro")
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/vendor/jde-2.3.5.1/lisp"))
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/vendor/cedet-1.0pre4/common/"))
-(load-file (expand-file-name "~/.emacs.d/vendor/cedet-1.0pre4/common/cedet.el"))
-(require 'jde)
+
+;;;;(add-to-list 'load-path (expand-file-name "~/.emacs.d/vendor/jde-2.3.5.1/lisp"))
+;;;;(add-to-list 'load-path (expand-file-name "~/.emacs.d/vendor/cedet-1.0pre4/common/"))
+;;;;(load-file (expand-file-name "~/.emacs.d/vendor/cedet-1.0pre4/common/cedet.el"))
+;;;;(require 'jde)
 
 
 ;; Ocaml stuff
@@ -152,11 +167,12 @@
                               auto-mode-alist))
 
 ;; Erlang stuff
-(setq load-path (cons  "/opt/local/lib/erlang/lib/tools-2.6/emacs"
-                       load-path))
-(setq erlang-root-dir "/opt/local/lib/erlang")
-(setq exec-path (cons "/opt/local/lib/erlang/bin" exec-path))
-(require 'erlang-start)
+;;(setq load-path (cons  "/opt/local/lib/erlang/lib/tools-2.6/emacs"
+;;                       load-path))
+;;(setq erlang-root-dir "/opt/local/lib/erlang")
+;;(setq exec-path (cons "/opt/local/lib/erlang/bin" exec-path))
+;;(require 'erlang-start)
 
 ;; No tabs damnit.
 (setq indent-tabs-mode nil)
+
