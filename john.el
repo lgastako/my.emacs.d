@@ -71,8 +71,7 @@
 
 (setq erc-auto-query 'buffer)
 
-;; (setq show-trailing-whitespace t)
-;; may need to be this instead:
+(setq show-trailing-whitespace t)
 (setq-default show-trailing-whitespace t)
 
 ;; Start the emacsclient server
