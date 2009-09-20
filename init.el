@@ -70,3 +70,5 @@
 
 ;;; init.el ends here
 (put 'erase-buffer 'disabled nil)
+
+(put 'set-goal-column 'disabled nil)
