@@ -14,7 +14,7 @@
 (setq swank-clojure-jar-path "~john/src/clojure/clojure.jar")
 
 ;; YAML mode
-(add-to-list 'load-path "/usr/local/share/emacs/site-lisp")
+;;(add-to-list 'load-path "~john/.emacs.d/vendor/yaml-mode")
 (require 'yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))
@@ -31,7 +31,7 @@
             "~/src/forex/dejcartes-snapshot/libs/jcommon-1.0.14.jar"
             "~/src/forex/dejcartes-snapshot/libs/jfreechart-1.0.11.jar"
             "~/src/forex/dejcartes-snapshot/dejcartes.jar"
-	    "."))
+            "."))
 
 (require 'swank-clojure-autoload)
 
@@ -58,6 +58,10 @@
 (load-file "~/.emacs.d/vendor/emacs-textmate/textmate.el")
 (textmate-mode) ;; TODO: Should I add hooks? Nah, I want it on almost always...
 
+
+;; Remap ctrl-x ctrl-p to fill-paragraph so it doesn't conflict with
+;; meta-q in xmonad
+(global-set-key [ (control x) (p) ] 'fill-paragraph)
 
 ;; Haskell junk
 (add-hook 'haskell-mode-hook 'my-haskell-mode-hook)
@@ -174,3 +178,20 @@
 ;; No tabs damnit.
 (setq indent-tabs-mode nil)
 
+;; Make tabs stand out
+(defface extra-whitespace-face
+   '((t (:background "pale green")))
+   "Used for tabs and such.")
+(defvar my-extra-keywords
+   '(("\t" . 'extra-whitespace-face)))
+;(add-hook 'emacs-lisp-mode-hook
+;          (lambda () (font-lock-add-keywords nil my-extra-keywords)))
+;(add-hook 'text-mode-hook
+;          (lambda () (font-lock-add-keywords nil my-extra-keywords)))
+;(add-hook 'python-mode-hook
+;          (lambda () (font-lock-add-keywords nil my-extra-keywords)))
+(font-lock-add-keywords nil my-extra-keywords)
+
+
+;; Tab size to 4
+(setq-default tab-width 4)
