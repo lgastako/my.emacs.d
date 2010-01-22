@@ -9,20 +9,19 @@
            (local-file (file-relative-name
                         temp-file
                         (file-name-directory buffer-file-name))))
-      (list "/pluto/local/bin/epylint" (list local-file))))
+      (list "/pluto/pycloud/apps/emacs/bin/lintrunner.py" (list local-file))))
 
   (add-to-list 'flymake-allowed-file-name-masks
                '("\\.py\\'" flymake-pylint-init)))
 
 (add-hook 'python-mode-hook (lambda() (flymake-mode t)))
 
-
 ;; Erlang
 ;;(setq load-path (cons  "/usr/share/emacs22/site-lisp/erlang/erlang"
 ;;                       load-path))
 ;;(setq erlang-root-dir "/usr")
 ;;(setq exec-path (cons "/usr/bin" exec-path))
-(require 'erlang-start)
+;;(require 'erlang-start)
 
 ;;(setq ipython-command "/pluto/local/bin/ipython")
 ;;(load "~/.emacs.d/vendor/ipython.el")
