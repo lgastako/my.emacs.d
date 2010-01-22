@@ -14,7 +14,7 @@
 (setq swank-clojure-jar-path "~john/src/clojure/clojure.jar")
 
 ;; YAML mode
-;;(add-to-list 'load-path "~john/.emacs.d/vendor/yaml-mode")
+(add-to-list 'load-path "~john/.emacs.d/vendor/yaml-mode")
 (require 'yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))
@@ -79,7 +79,9 @@
 (setq-default show-trailing-whitespace t)
 
 ;; Start the emacsclient server
-(server-start)
+;;(server-start)
+
+(add-hook 'after-init-hook 'server-start)
 
 ;; Add column numbers to the status bar.
 (column-number-mode)
