@@ -1,3 +1,5 @@
+Note: Obseleted by my dotfiles/emacs dir.
+
 # Emacs Starter Kit
 
 This should provide a saner set of defaults than you get normally with
